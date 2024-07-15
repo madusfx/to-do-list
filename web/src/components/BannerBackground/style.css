@@ -1,0 +1,35 @@
+.section-bg {
+  position: relative;
+  z-index: 1;
+}
+
+.section-bg::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: black;
+  z-index: -1;
+  transform: rotate(-3deg);
+  transform-origin: center;
+}
+
+@media (max-width: 768px) {
+  .section-bg::before {
+    top: -25%;
+    left: -25%;
+    width: 150%;
+    height: 150%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-bg::before {
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+  }
+}

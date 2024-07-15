@@ -1,11 +1,11 @@
-import { Header } from '@/components';
+import { BannerBackground, Header } from '@/components';
 
 export default function Home() {
   return (
     <>
       <Header />
       <section className="relative flex sm:bg-background sm:bg-contain sm:bg-no-repeat sm:bg-right">
-        <div className="px-11 mt-16">
+        <div className="px-11 mt-6 sm:mt-16">
           <h1 className="text-5xl lg:text-7xl text-black font-bold">
             Organize
             <br />
@@ -17,6 +17,16 @@ export default function Home() {
           </button>
         </div>
       </section>
+      <BannerBackground>
+        <h1 className="relative font-poppins text-5xl sm:text-6xl text-center text-white font-semibold inline-block">
+          To-do List
+          <span className="absolute left-0 right-0 bottom-[-8px] h-[4px] bg-customGreen w-full"></span>
+        </h1>
+        <p className="mt-8 text-2xl text-center text-white">
+          Drag and drop to set your main priorities, check when done and create
+          what’s new.
+        </p>
+      </BannerBackground>
     </>
   );
 }

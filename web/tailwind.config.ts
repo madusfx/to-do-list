@@ -14,6 +14,9 @@ const config: Config = {
       colors: {
         customGreen: '#4AC959',
       },
+      fontFamily: {
+        poppins: 'Poppins, sans-serif',
+      },
     },
   },
   plugins: [],
