@@ -10,9 +10,11 @@ const config: Config = {
     extend: {
       backgroundImage: {
         background: "url('/images/background-section.png')",
+        background2: "url('/images/background-section2.png')",
       },
       colors: {
         customGreen: '#4AC959',
+        customOrange: '#E88D39',
       },
       fontFamily: {
         poppins: 'Poppins, sans-serif',

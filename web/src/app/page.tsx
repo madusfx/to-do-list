@@ -1,4 +1,4 @@
-import { BannerBackground, Header } from '@/components';
+import { BannerBackground, Card, Header } from '@/components';
 
 export default function Home() {
   return (
@@ -27,6 +27,18 @@ export default function Home() {
           what’s new.
         </p>
       </BannerBackground>
+      <section className="flex justify-center gap-12 mt-36 bg-background2 bg-auto bg-no-repeat bg-left">
+        <Card
+          title="To-do"
+          subtitle="Take a breath. Start doing."
+          color="customOrange"
+        />
+        <Card
+          title="Done"
+          subtitle="Congratulations! You have done 5 tasks"
+          color="customGreen"
+        />
+      </section>
     </>
   );
 }
