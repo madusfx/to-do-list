@@ -1,4 +1,10 @@
-import { BannerBackground, Card, Carousel, Header } from '@/components';
+import {
+  BannerBackground,
+  Card,
+  Carousel,
+  ContactCard,
+  Header,
+} from '@/components';
 
 export default function Home() {
   return (
@@ -46,6 +52,9 @@ export default function Home() {
             good things
           </h1>
         </div>
+      </section>
+      <section className="flex justify-center mt-80">
+        <ContactCard />
       </section>
     </>
   );
