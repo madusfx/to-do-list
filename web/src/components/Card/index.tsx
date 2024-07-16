@@ -8,7 +8,7 @@ type CardProps = {
 export function Card({ title, subtitle, color, list }: CardProps) {
   return (
     <div
-      className={`bg-white drop-shadow-md w-96 p-6 border-t-[20px] border-${color}`}
+      className={`bg-white drop-shadow-md w-80 sm:w-96 p-6 border-t-[20px] border-${color}`}
     >
       <h1 className="text-black text-4xl text-center font-poppins font-semibold">
         {title}

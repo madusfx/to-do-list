@@ -22,12 +22,12 @@ export default function Home() {
           To-do List
           <span className="absolute left-0 right-0 bottom-[-8px] h-[4px] bg-customGreen w-full"></span>
         </h1>
-        <p className="mt-8 text-2xl text-center text-white">
+        <p className="mt-8 mx-2 sm:mx-0 text-xl sm:text-2xl text-center text-white">
           Drag and drop to set your main priorities, check when done and create
           what’s new.
         </p>
       </BannerBackground>
-      <section className="flex justify-center gap-12 mt-36 bg-background2 bg-auto bg-no-repeat bg-left">
+      <section className="flex flex-col items-center sm:items-baseline sm:flex-row justify-center gap-12 mt-36 bg-background2 bg-auto bg-no-repeat bg-left">
         <Card
           title="To-do"
           subtitle="Take a breath. Start doing."
