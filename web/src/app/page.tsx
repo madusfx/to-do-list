@@ -1,4 +1,4 @@
-import { BannerBackground, Card, Header } from '@/components';
+import { BannerBackground, Card, Carousel, Header } from '@/components';
 
 export default function Home() {
   return (
@@ -38,6 +38,14 @@ export default function Home() {
           subtitle="Congratulations! You have done 5 tasks"
           color="customGreen"
         />
+      </section>
+      <section className="relative z-0 flex justify-center mt-20">
+        <Carousel />
+        <div className="bg-customGreen w-3/4 h-[520px] rounded-lg relative z-0">
+          <h1 className="p-10 text-5xl font-semibold text-white">
+            good things
+          </h1>
+        </div>
       </section>
     </>
   );

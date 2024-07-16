@@ -15,6 +15,8 @@ const config: Config = {
       colors: {
         customGreen: '#4AC959',
         customOrange: '#E88D39',
+        customGray: '#9499B3',
+        customBlue: '#312F4F',
       },
       fontFamily: {
         poppins: 'Poppins, sans-serif',
