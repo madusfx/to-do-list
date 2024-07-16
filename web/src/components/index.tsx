@@ -5,3 +5,4 @@ export * from './Carousel';
 export * from './CarouselCard';
 export * from './ContactCard';
 export * from './Input';
+export * from './Footer';

@@ -3,6 +3,7 @@ import {
   Card,
   Carousel,
   ContactCard,
+  Footer,
   Header,
 } from '@/components';
 
@@ -56,6 +57,7 @@ export default function Home() {
       <section className="flex justify-center mt-80">
         <ContactCard />
       </section>
+      <Footer />
     </>
   );
 }
