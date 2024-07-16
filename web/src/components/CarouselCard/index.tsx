@@ -20,6 +20,7 @@ export function CarouselCard({
       <p className="mx-3 my-2 text-lg text-customBlue">{description}</p>
       <a
         href={href}
+        target="blank"
         className="absolute bottom-0 left-0 mx-3 mb-2 text-customGreen text-base"
       >
         read more
