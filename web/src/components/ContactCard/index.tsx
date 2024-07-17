@@ -1,8 +1,10 @@
 'use client';
+import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../Input';
 import { contactSchema } from '@/utils/yup.schema';
+import { ConfirmationModal } from '../ConfirmationModal';
 
 export interface IFormInput {
   name?: string;
@@ -12,6 +14,7 @@ export interface IFormInput {
 }
 
 export function ContactCard() {
+  const [isModalOpen, setModalOpen] = useState(false);
   const methods = useForm<IFormInput>({
     resolver: yupResolver(contactSchema),
     defaultValues: {
@@ -30,10 +33,12 @@ export function ContactCard() {
 
   const onSubmit = (data: IFormInput) => {
     console.log(data);
+    setModalOpen(true);
   };
 
   return (
     <>
+      {isModalOpen && <ConfirmationModal setModalOpen={setModalOpen} />}
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -93,11 +98,14 @@ export function ContactCard() {
               cols={50}
               className="border rounded-md border-customBlue p-3 w-full"
               placeholder="Type what you want to say to us"
-              name="name"
+              {...register('message')}
             />
             <p>{errors.message?.message}</p>
           </div>
-          <button className="mt-8 w-full p-4 bg-customGreen rounded-md">
+          <button
+            type="submit"
+            className="mt-8 w-full p-4 bg-customGreen rounded-md"
+          >
             <p className="text-white font-bold uppercase">send now</p>
           </button>
         </form>
