@@ -1,3 +1,5 @@
+'use client';
+import { useState } from 'react';
 import {
   BannerBackground,
   Card,
@@ -5,12 +7,16 @@ import {
   ContactCard,
   Footer,
   Header,
+  LoginModal,
 } from '@/components';
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
-      <Header />
+      {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
+      <Header setModalOpen={setModalOpen} />
       <section className="relative flex sm:bg-background sm:bg-contain sm:bg-no-repeat sm:bg-right">
         <div className="px-11 mt-6 sm:mt-16">
           <h1 className="text-5xl lg:text-7xl text-black font-bold">

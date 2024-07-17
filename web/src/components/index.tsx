@@ -6,3 +6,4 @@ export * from './CarouselCard';
 export * from './ContactCard';
 export * from './Input';
 export * from './Footer';
+export * from './LoginModal';

@@ -14,3 +14,9 @@ export const contactSchema = yup.object().shape({
     .required('The email field is required.'),
   message: yup.string().required('The message field is required.'),
 });
+
+export const loginSchema = yup.object().shape({
+  email: yup.string().email('Please enter a valid email.'),
+  user: yup.string().required('The user field is required.'),
+  password: yup.string().required('The password field is required.'),
+});
