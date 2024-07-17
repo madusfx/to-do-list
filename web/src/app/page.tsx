@@ -38,12 +38,12 @@ export default function Home() {
         <Card
           title="To-do"
           subtitle="Take a breath. Start doing."
-          color="customOrange"
+          type="todo"
         />
         <Card
           title="Done"
           subtitle="Congratulations! You have done 5 tasks"
-          color="customGreen"
+          type="done"
         />
       </section>
       <section className="relative z-0 flex justify-center mt-20">

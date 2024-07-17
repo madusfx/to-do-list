@@ -1,14 +1,22 @@
+import classNames from 'classnames';
+
 type CardProps = {
   title: string;
   subtitle: string;
-  color: 'customOrange' | 'customGreen';
+  type: 'todo' | 'done';
   list?: [];
 };
 
-export function Card({ title, subtitle, color, list }: CardProps) {
+export function Card({ title, subtitle, type, list }: CardProps) {
   return (
     <div
-      className={`bg-white drop-shadow-md w-80 sm:w-96 p-6 border-t-[20px] border-${color}`}
+      className={classNames(
+        'bg-white drop-shadow-md w-80 sm:w-96 p-6 border-t-[20px]',
+        {
+          'border-customOrange': type === 'todo',
+          'border-customGreen': type === 'done',
+        },
+      )}
     >
       <h1 className="text-black text-4xl text-center font-poppins font-semibold">
         {title}
@@ -18,31 +26,61 @@ export function Card({ title, subtitle, color, list }: CardProps) {
         <ul className="mt-4 flex flex-col">
           <li className="mt-2 flex gap-4">
             <div
-              className={`box-border border-2 border-${color} w-6 h-6 rounded-full`}
+              className={classNames(
+                'box-border border-2 w-6 h-6 rounded-full',
+                {
+                  'border-customOrange': type === 'todo',
+                  'border-customGreen': type === 'done',
+                },
+              )}
             ></div>
             <p className="font-semibold text-base">this is a new task</p>
           </li>
           <li className="mt-2 flex gap-4">
             <div
-              className={`box-border border-2 border-${color} w-6 h-6 rounded-full`}
+              className={classNames(
+                'box-border border-2 w-6 h-6 rounded-full',
+                {
+                  'border-customOrange': type === 'todo',
+                  'border-customGreen': type === 'done',
+                },
+              )}
             ></div>
             <p className="font-semibold text-base">this is a new task</p>
           </li>
           <li className="mt-2 flex gap-4">
             <div
-              className={`box-border border-2 border-${color} w-6 h-6 rounded-full`}
+              className={classNames(
+                'box-border border-2 w-6 h-6 rounded-full',
+                {
+                  'border-customOrange': type === 'todo',
+                  'border-customGreen': type === 'done',
+                },
+              )}
             ></div>
             <p className="font-semibold text-base">this is a new task</p>
           </li>
           <li className="mt-2 flex gap-4">
             <div
-              className={`box-border border-2 border-${color} w-6 h-6 rounded-full`}
+              className={classNames(
+                'box-border border-2 w-6 h-6 rounded-full',
+                {
+                  'border-customOrange': type === 'todo',
+                  'border-customGreen': type === 'done',
+                },
+              )}
             ></div>
             <p className="font-semibold text-base">this is a new task</p>
           </li>
           <li className="mt-2 flex gap-4">
             <div
-              className={`box-border border-2 border-${color} w-6 h-6 rounded-full`}
+              className={classNames(
+                'box-border border-2 w-6 h-6 rounded-full',
+                {
+                  'border-customOrange': type === 'todo',
+                  'border-customGreen': type === 'done',
+                },
+              )}
             ></div>
             <p className="font-semibold text-base">this is a new task</p>
           </li>
