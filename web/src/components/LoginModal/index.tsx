@@ -86,14 +86,14 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
               </button>
             </form>
             <p className="mt-4 text-center">
-              Não possui uma conta? Clique{' '}
+              Don&apos;t have an account? Click{' '}
               <button
                 onClick={handleChangeIsLogin}
                 className="text-customGreen font-bold"
               >
-                aqui
+                here
               </button>{' '}
-              para se registrar.
+              to register.
             </p>
           </div>
         ) : (
@@ -130,14 +130,14 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
               </button>
             </form>
             <p className="mt-4 text-center">
-              Já tem uma conta? Clique{' '}
+              Already have an account? Click{' '}
               <button
                 onClick={handleChangeIsLogin}
                 className="text-customGreen font-bold"
               >
-                aqui
+                here
               </button>{' '}
-              para fazer o login.
+              to log in.
             </p>
           </div>
         )}
