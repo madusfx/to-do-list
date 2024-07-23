@@ -9,8 +9,7 @@ require('./database');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-require('./controllers/authController')(app);
-require('./controllers/projectController')(app);
+require('./app/controllers/index')(app);
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
