@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getId, getToken } from '@/services/auth';
 import {
   BannerBackground,
   Card,
@@ -7,17 +8,44 @@ import {
   ContactCard,
   Footer,
   Header,
+  ListItem,
   LoginModal,
 } from '@/components';
+import api from '@/services/api';
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [list, setList] = useState<ListItem[]>([]);
+  const userId = getId();
+  const userToken = getToken();
+
+  useEffect(() => {
+    fetchList();
+  }, []);
+
+  const handleUpdate = () => {
+    fetchList();
+  };
+
+  const fetchList = async () => {
+    try {
+      const response = await api.get(`/list/items/${userId}`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      setList(response.data);
+    } catch (err) {
+      console.error('Error fetching list', err);
+    }
+  };
 
   return (
     <>
       {modalOpen && <LoginModal setModalOpen={setModalOpen} />}
       <Header setModalOpen={setModalOpen} />
-      <section className="relative flex sm:bg-background sm:bg-contain sm:bg-no-repeat sm:bg-right">
+      <section
+        id="introduction"
+        className="relative flex sm:bg-background sm:bg-contain sm:bg-no-repeat sm:bg-right"
+      >
         <div className="px-11 mt-6 sm:mt-16">
           <h1 className="text-5xl lg:text-7xl text-black font-bold">
             Organize
@@ -25,8 +53,13 @@ export default function Home() {
             <span className="text-customGreen">your daily jobs</span>
           </h1>
           <p className="mt-12 font-semibold">The only way to get things done</p>
-          <button className="mt-8 px-6 py-3 rounded-lg bg-customGreen hover:scale-105 hover:transition hover:duration-700 hover:ease-in-out">
-            <p className="text-white font-semibold">Go to To-do list</p>
+          <button
+            className="mt-8 px-6 py-3 rounded-lg bg-customGreen hover:scale-105 hover:transition hover:duration-700 hover:ease-in-out"
+            onClick={fetchList}
+          >
+            <a href="#todolist" className="text-white font-semibold">
+              Go to To-do list
+            </a>
           </button>
         </div>
       </section>
@@ -40,19 +73,14 @@ export default function Home() {
           what’s new.
         </p>
       </BannerBackground>
-      <section className="flex flex-col items-center sm:items-baseline sm:flex-row justify-center gap-12 mt-36 bg-background2 bg-auto bg-no-repeat bg-left">
-        <Card
-          title="To-do"
-          subtitle="Take a breath. Start doing."
-          type="todo"
-        />
-        <Card
-          title="Done"
-          subtitle="Congratulations! You have done 5 tasks"
-          type="done"
-        />
+      <section
+        id="todolist"
+        className="flex flex-col items-center sm:items-baseline sm:flex-row justify-center gap-12 mt-36 bg-background2 bg-auto bg-no-repeat bg-left"
+      >
+        <Card title="To-do" type="todo" list={list} onUpdate={handleUpdate} />
+        <Card title="Done" type="done" list={list} onUpdate={handleUpdate} />
       </section>
-      <section className="relative z-0 flex justify-center mt-20">
+      <section id="carousel" className="relative z-0 flex justify-center mt-20">
         <Carousel />
         <div className="bg-customGreen w-3/4 h-[520px] rounded-lg relative z-0">
           <h1 className="p-10 text-5xl font-semibold text-white">
@@ -60,7 +88,7 @@ export default function Home() {
           </h1>
         </div>
       </section>
-      <section className="flex justify-center mt-80">
+      <section id="contact" className="flex justify-center mt-80">
         <ContactCard />
       </section>
       <Footer />

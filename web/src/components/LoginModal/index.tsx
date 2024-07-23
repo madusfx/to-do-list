@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../Input';
 import { loginSchema } from '@/utils/yup.schema';
+import api from '@/services/api';
+import { login } from '@/services/auth';
 
 type LoginModalProps = {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,8 +37,41 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
     formState: { errors },
   } = methods;
 
-  const onSubmit = (data: IFormInput) => {
-    console.log(data);
+  const onRegister = (data: IFormInput) => {
+    api
+      .post('/auth/users', {
+        email: data.email,
+        username: data.user,
+        password: data.password,
+      })
+      .then(function (response) {
+        setIsLogin(true);
+
+        const { token } = response.data;
+        const { _id } = response.data.user;
+        login(token, _id);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const onLogin = (data: IFormInput) => {
+    api
+      .post('/auth/login', {
+        username: data.user,
+        password: data.password,
+      })
+      .then(function (response) {
+        setModalOpen(false);
+
+        const { token } = response.data;
+        const { _id } = response.data.user;
+        login(token, _id);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   function handleChangeIsLogin() {
@@ -65,7 +100,7 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
             </h2>
             <form
               className="flex flex-col items-center"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onLogin)}
             >
               <Input
                 label="User:"
@@ -76,7 +111,7 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
               />
               <Input
                 label="Password:"
-                type="text"
+                type="password"
                 name="password"
                 register={register}
                 errorMessage={errors.password?.message}
@@ -102,7 +137,7 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
             <h2 className="text-5xl text-customGreen">to create your list</h2>
             <form
               className="flex flex-col items-center"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onRegister)}
             >
               <Input
                 label="E-mail:"
@@ -120,7 +155,7 @@ export function LoginModal({ setModalOpen }: LoginModalProps) {
               />
               <Input
                 label="Password:"
-                type="text"
+                type="password"
                 name="password"
                 register={register}
                 errorMessage={errors.password?.message}
