@@ -8,7 +8,7 @@ const app = express();
 require('./database');
 
 app.use(cors({
-  origin: 'https://to-do-list-gamma-opal.vercel.app/',
+  origin: 'https://to-do-list-gamma-opal.vercel.app',
   optionsSuccessStatus: 200
 }));
 app.use(bodyParser.json());
