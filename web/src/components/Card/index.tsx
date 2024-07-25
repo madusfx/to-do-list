@@ -62,6 +62,16 @@ export function Card({ onUpdate, title, type, list: initialList }: CardProps) {
     }
   }
 
+  async function handleEraseAll() {
+    const itemsToDelete = list.filter(item =>
+      type === 'todo' ? !item.completed : item.completed,
+    );
+    for (const item of itemsToDelete) {
+      await handleDeleteItem(item._id);
+    }
+    onUpdate();
+  }
+
   async function handleCompleteItem(_id: string) {
     const data = {
       completed: true,
@@ -133,7 +143,10 @@ export function Card({ onUpdate, title, type, list: initialList }: CardProps) {
               </li>
             </ul>
             <div className="flex justify-center">
-              <button className="mt-6 bg-black p-4 rounded-md w-3/4">
+              <button
+                className="mt-6 bg-black p-4 rounded-md w-3/4"
+                onClick={handleEraseAll}
+              >
                 <p className="text-white font-semibold text-2xl text-center">
                   erase all
                 </p>
@@ -168,7 +181,10 @@ export function Card({ onUpdate, title, type, list: initialList }: CardProps) {
                 ))}
             </ul>
             <div className="flex justify-center">
-              <button className="mt-6 bg-black p-4 rounded-md w-3/4">
+              <button
+                className="mt-6 bg-black p-4 rounded-md w-3/4"
+                onClick={handleEraseAll}
+              >
                 <p className="text-white font-semibold text-2xl text-center">
                   erase all
                 </p>

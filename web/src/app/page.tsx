@@ -32,9 +32,11 @@ export default function Home() {
       const response = await api.get(`/list/items/${userId}`, {
         headers: { Authorization: `Bearer ${userToken}` },
       });
-      setList(response.data);
+      const items = Array.isArray(response.data) ? response.data : [];
+      setList(items);
     } catch (err) {
       console.error('Error fetching list', err);
+      setList([]);
     }
   };
 
