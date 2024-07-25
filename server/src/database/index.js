@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
-  serverSelectionTimeoutMS: 30000
+  serverSelectionTimeoutMS: 30000,
+  connectTimeoutMS: 30000,
+  socketTimeoutMS: 45000
 })
   .then(() => {
     console.log('Connected to MongoDB Atlas!');
