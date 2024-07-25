@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Input } from '../Input';
 import { contactSchema } from '@/utils/yup.schema';
 import { ConfirmationModal } from '../ConfirmationModal';
+import api from '@/services/api';
 
 export interface IFormInput {
   name?: string;
@@ -32,8 +33,22 @@ export function ContactCard() {
   } = methods;
 
   const onSubmit = (data: IFormInput) => {
-    console.log(data);
-    setModalOpen(true);
+    const payload = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      message: data.message,
+    };
+    api
+      .post('/mail/send', payload)
+      .then(function (response) {
+        setModalOpen(true);
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('Error sending the e-mail. Please try again later.');
+      });
   };
 
   return (
